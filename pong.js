@@ -15,7 +15,7 @@ class GameScene: SKScene {
     var enemy = SKSpriteNode()
     var main = SKSpriteNode()
 
-    var score = [Int]()
+    var score = [0,0]
 
     override func didMove(to view: SKView) {
 
@@ -32,18 +32,18 @@ class GameScene: SKScene {
 
         self.physicsBody = border
     }
-
     func startGame() {
         score = [0,0]
     }
     func addScore(playerWhoWon: SKSpriteNode){
         if playerWhoWon == main {
             score[0] += 1
-            ball.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 300))
+            ball.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 30))
         }
+
         else if playerWhoWon == enemy {
-           score[1] += 1
-           ball.physicsBody?.applyImpulse(CGVector(dx: -300, dy: -300))
+            score[1] += 1
+            ball.physicsBody?.applyImpulse(CGVector(dx: -30, dy: -30))
         }
         print(score)
     }
@@ -52,7 +52,7 @@ class GameScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
 
-        main.run(SKAction.moveTo(x: location.x, duration: 0.9))
+            main.run(SKAction.moveTo(x: location.x, duration: 0.9))
 
         }
 
